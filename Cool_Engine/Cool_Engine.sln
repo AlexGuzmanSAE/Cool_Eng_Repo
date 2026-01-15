@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36811.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cool_Engine", "Cool_Engine\Cool_Engine.vcxproj", "{20076118-9345-45C4-B666-4488AAAFD80F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20076118-9345-45C4-B666-4488AAAFD80F}.Debug|x64.ActiveCfg = Debug|x64
+		{20076118-9345-45C4-B666-4488AAAFD80F}.Debug|x64.Build.0 = Debug|x64
+		{20076118-9345-45C4-B666-4488AAAFD80F}.Debug|x86.ActiveCfg = Debug|Win32
+		{20076118-9345-45C4-B666-4488AAAFD80F}.Debug|x86.Build.0 = Debug|Win32
+		{20076118-9345-45C4-B666-4488AAAFD80F}.Release|x64.ActiveCfg = Release|x64
+		{20076118-9345-45C4-B666-4488AAAFD80F}.Release|x64.Build.0 = Release|x64
+		{20076118-9345-45C4-B666-4488AAAFD80F}.Release|x86.ActiveCfg = Release|Win32
+		{20076118-9345-45C4-B666-4488AAAFD80F}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {089157E0-96AC-4670-A737-B1A824FA12A9}
+	EndGlobalSection
+EndGlobal
