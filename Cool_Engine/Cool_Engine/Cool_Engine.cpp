@@ -6,6 +6,7 @@ int main(void)
     gameEngine.Init();
     gameEngine.Run();
     gameEngine.Draw();
+    gameEngine.ShutDown();
 
     return 0;
 }

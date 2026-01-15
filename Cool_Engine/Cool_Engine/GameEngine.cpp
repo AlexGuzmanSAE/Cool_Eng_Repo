@@ -37,15 +37,17 @@ void GameEngine::Draw()
 
 void GameEngine::Run()
 {
-    Log::println("Pito");
+    Log::println("RUN");
     while (!WindowShouldClose())
     {
         Update();
         Draw();
     }
-    CloseWindow();
+    
 }
 
 void GameEngine::ShutDown()
 {
+    Log::println("SHUTDOWN");
+    CloseWindow();
 }
