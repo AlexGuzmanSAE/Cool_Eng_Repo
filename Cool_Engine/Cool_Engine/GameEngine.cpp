@@ -1,9 +1,14 @@
 #include "GameEngine.h"
 #include "raylib.h"
 #include "Log.h"
+#include "SceneManager.h"
+#include "GameScene.h"
 
 GameEngine::GameEngine()
 {
+    gameScene = new GameScene;
+    menuScene = new MenuScene;
+    SceneManager::instance().changeScene(menuScene);
 }
 
 GameEngine::~GameEngine()
@@ -12,32 +17,37 @@ GameEngine::~GameEngine()
 
 void GameEngine::Init()
 {
-    Log::println("INIT");
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitWindow(screenWidth, screenHeight, "Cool_Engine");
     SetTargetFPS(60);
 }
 
 void GameEngine::Update()
 {
-    Log::println("UPDATE");
-    DrawRectangle(100, 100, 20, 20, RED);
+    SceneManager::instance().UpdateScene();
+
+    if (SceneManager::instance().GetCurrentScene()->buttonPressed)
+    {
+        SceneManager::instance().changeScene(gameScene);
+    }
+
+    if (IsKeyPressed(KEY_M))
+    {
+        SceneManager::instance().changeScene(menuScene);
+    }
 }
 
 void GameEngine::Draw()
 {
-    Log::println("DRAW");
     BeginDrawing();
-
     ClearBackground(RAYWHITE);
 
-    DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+    SceneManager::instance().DrawScene();
 
     EndDrawing();
 }
 
 void GameEngine::Run()
 {
-    Log::println("RUN");
     while (!WindowShouldClose())
     {
         Update();
@@ -48,6 +58,5 @@ void GameEngine::Run()
 
 void GameEngine::ShutDown()
 {
-    Log::println("SHUTDOWN");
     CloseWindow();
 }
