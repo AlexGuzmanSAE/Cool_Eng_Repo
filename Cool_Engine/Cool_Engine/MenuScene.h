@@ -11,7 +11,7 @@ public:
     void UnLoad() override;
     void Update() override;
     void Draw() override;
-
+    void PressButton() override;
     
 
 private:

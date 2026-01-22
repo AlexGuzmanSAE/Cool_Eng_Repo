@@ -24,16 +24,6 @@ void GameEngine::Init()
 void GameEngine::Update()
 {
     SceneManager::instance().UpdateScene();
-
-    if (SceneManager::instance().GetCurrentScene()->buttonPressed)
-    {
-        SceneManager::instance().changeScene(gameScene);
-    }
-
-    if (IsKeyPressed(KEY_M))
-    {
-        SceneManager::instance().changeScene(menuScene);
-    }
 }
 
 void GameEngine::Draw()

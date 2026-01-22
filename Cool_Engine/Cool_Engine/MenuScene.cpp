@@ -1,5 +1,5 @@
 #include "MenuScene.h"
-#include "raylib.h"
+
 
 void MenuScene::Load()
 {
@@ -13,15 +13,19 @@ void MenuScene::UnLoad()
 
 void MenuScene::Update()
 {
-
-	if (CheckCollisionPointRec(GetMousePosition(), button) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-	{
-		buttonPressed = true;
-	}
+	PressButton();
 }
 
 void MenuScene::Draw()
 {
-	DrawRectangleRec(button, buttonPressed ? RED : DARKBLUE);
+	DrawRectangleRec(button, buttonPressed ? DARKBLUE : RED);
 	DrawText("GameScene", button.x + 10, button.y + 10, 20, WHITE);
+}
+
+void MenuScene::PressButton()
+{
+	if (CheckCollisionPointRec(GetMousePosition(), button) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+	{
+		buttonPressed = true;
+	}
 }
