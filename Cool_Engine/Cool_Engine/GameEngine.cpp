@@ -2,13 +2,14 @@
 #include "raylib.h"
 #include "Log.h"
 #include "SceneManager.h"
-#include "GameScene.h"
+
+#define RAYGUI_IMPLEMENTATION
+#include "include/raygui.h"
 
 GameEngine::GameEngine()
 {
-    gameScene = new GameScene;
-    menuScene = new MenuScene;
-    SceneManager::instance().changeScene(menuScene);
+    eventManagerI = new EventManager;
+    SceneManager::instance().changeScene("MenuScene");
 }
 
 GameEngine::~GameEngine()
@@ -19,6 +20,7 @@ void GameEngine::Init()
 {
     InitWindow(screenWidth, screenHeight, "Cool_Engine");
     SetTargetFPS(60);
+    
 }
 
 void GameEngine::Update()

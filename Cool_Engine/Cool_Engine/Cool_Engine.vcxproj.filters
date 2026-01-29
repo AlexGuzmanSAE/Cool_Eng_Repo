@@ -57,5 +57,11 @@
     <ClInclude Include="MenuScene.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\raygui.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,13 +1,28 @@
 #include "SceneManager.h"
 
-void SceneManager::changeScene(SceneBase* newScene)
+SceneManager::SceneManager()
+{
+	gameScene = new GameScene;
+	menuScene = new MenuScene;
+	currentScene = nullptr;
+}
+void SceneManager::changeScene(std::string sceneName)
 {
 	if (currentScene)
 	{
 		currentScene->UnLoad();
 	}
 
-	currentScene = newScene;
+	currentSceneStr = sceneName;
+
+	if (gameSceneStr == sceneName)
+	{
+		currentScene = gameScene;
+	}
+	else if (sceneName == menuSceneStr)
+	{
+		currentScene = menuScene;
+	}
 
 	if (currentScene)
 	{
@@ -29,3 +44,4 @@ SceneBase* SceneManager::GetCurrentScene()
 {
 	return currentScene;
 }
+

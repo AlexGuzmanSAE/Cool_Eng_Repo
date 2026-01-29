@@ -1,11 +1,20 @@
 #include "GameScene.h"
 #include "raylib.h"
+#include "EventManager.h"
+#include <string>
+#include "SceneManager.h"
 
+void GameScene::OnButtonPress(const LoadMenuEvent& e)
+{
+	SceneManager::instance().changeScene("MenuScene");
+}
 
 void GameScene::Load()
 {
 	button = { 350, 280, 100, 50 };
-	buttonPressed = false;
+	
+	EventManager::instance().suscribe(this, &GameScene::OnButtonPress);
+
 }
 
 void GameScene::UnLoad()
@@ -14,7 +23,10 @@ void GameScene::UnLoad()
 
 void GameScene::Update()
 {
-	PressButton();
+	if (CheckCollisionPointRec(GetMousePosition(), button) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+	{
+		EventManager::instance().emit(event);
+	}
 }
 
 void GameScene::Draw()
@@ -24,10 +36,9 @@ void GameScene::Draw()
 
 }
 
+
+
 void GameScene::PressButton()
 {
-	if (CheckCollisionPointRec(GetMousePosition(), button) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-	{
-		buttonPressed = true;
-	}
+	
 }

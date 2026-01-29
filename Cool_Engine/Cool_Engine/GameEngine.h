@@ -1,6 +1,5 @@
 #pragma once
-#include "GameScene.h"
-#include "MenuScene.h"
+#include "EventManager.h"
 
 class GameEngine
 {
@@ -17,8 +16,6 @@ private:
 	const int screenWidth = 800;
 	const int screenHeight = 450;
 
-	GameScene* gameScene;
-	MenuScene* menuScene;
-	
+	EventManager* eventManagerI;
 };
 
