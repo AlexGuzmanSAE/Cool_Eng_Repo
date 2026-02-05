@@ -1,6 +1,7 @@
 #pragma once
 #include "SceneBase.h"
 #include "raylib.h"
+#include <memory>
 
 struct LoadGameEvent
 {
@@ -22,5 +23,8 @@ public:
 private:
     Rectangle button;
     LoadGameEvent event;
+
+	std::shared_ptr<Music> music;
+	std::shared_ptr<Font> font;
 };
 

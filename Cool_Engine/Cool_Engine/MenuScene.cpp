@@ -2,6 +2,7 @@
 #include "EventManager.h"
 #include <string>
 #include "SceneManager.h"
+#include "ResourceManager.h"
 
 void MenuScene::OnButtonPress(const LoadGameEvent& e)
 {
@@ -12,6 +13,9 @@ void MenuScene::Load()
 {
 	button = { 350, 280, 100, 50 };
 	EventManager::instance().suscribe(this, &MenuScene::OnButtonPress);
+
+	music = ResourceManager::instance().load_music("cat_walk.ogg");
+	PlayMusicStream(*music);
 }
 
 void MenuScene::UnLoad()
@@ -24,6 +28,7 @@ void MenuScene::Update()
 	{
 		EventManager::instance().emit(event);
 	}
+	UpdateMusicStream(*music);
 }
 
 void MenuScene::Draw()

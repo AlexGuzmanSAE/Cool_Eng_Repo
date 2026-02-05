@@ -117,8 +117,7 @@
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy "$(ProjectDir)assets" "$(OutDir)assets" /E /I /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,6 +140,7 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="MenuScene.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
@@ -150,9 +150,13 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="src\raygui.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fonts\American Captain.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

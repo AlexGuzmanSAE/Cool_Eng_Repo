@@ -8,11 +8,23 @@
     <Filter Include="src">
       <UniqueIdentifier>{9d59641d-e8b9-469d-87aa-90a76d1c0460}</UniqueIdentifier>
     </Filter>
-    <Filter Include="assets">
-      <UniqueIdentifier>{70f584b6-22ed-4dd9-ae3d-3bfc5723d152}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include">
       <UniqueIdentifier>{f35ab0c8-9975-428f-9f8b-962e704ed6c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets">
+      <UniqueIdentifier>{07d578dc-ca88-4187-a498-013938be94a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\fonts">
+      <UniqueIdentifier>{46685c4e-6056-496d-b928-149eba84b002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\textures">
+      <UniqueIdentifier>{3394a4da-703e-4a4b-8df5-b29d6dd90a2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\sounds">
+      <UniqueIdentifier>{c21becc0-b713-4f20-a7bb-76291e2999dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\music">
+      <UniqueIdentifier>{cd930726-b6c3-4d9e-b546-c253bb6d4bee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -35,6 +47,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="MenuScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,5 +78,13 @@
     <ClInclude Include="src\raygui.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fonts\American Captain.ttf">
+      <Filter>assets\fonts</Filter>
+    </Font>
   </ItemGroup>
 </Project>

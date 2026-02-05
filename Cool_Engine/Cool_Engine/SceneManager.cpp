@@ -19,7 +19,7 @@ void SceneManager::changeScene(std::string sceneName)
 	{
 		currentScene = gameScene;
 	}
-	else if (sceneName == menuSceneStr)
+	else if (menuSceneStr == sceneName)
 	{
 		currentScene = menuScene;
 	}
