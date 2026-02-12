@@ -52,6 +52,9 @@
     <ClCompile Include="ResourceManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsSystem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -79,6 +82,15 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="PBodies.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

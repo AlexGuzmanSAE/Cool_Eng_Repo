@@ -27,13 +27,20 @@ void GameScene::Update()
 	{
 		EventManager::instance().emit(event);
 	}
+	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	{
+		Vector2 mousePos = GetMousePosition();
+		auto ball = physics.make_circle("ball", "ball", 20.0f, true, mousePos);
+		addEntity(ball);
+	}
+
 }
 
 void GameScene::Draw()
 {
 	DrawRectangleRec(button, buttonPressed ? RED : DARKBLUE);
 	DrawText("MenuScene", button.x + 10, button.y + 10, 20, WHITE);
-
+	SceneBase::Draw();
 }
 
 

@@ -140,16 +140,20 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="MenuScene.cpp" />
+    <ClCompile Include="PhysicsSystem.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="PBodies.h" />
+    <ClInclude Include="PhysicsSystem.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneManager.h" />

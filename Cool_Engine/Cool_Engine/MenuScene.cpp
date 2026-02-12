@@ -35,6 +35,7 @@ void MenuScene::Draw()
 {
 	DrawRectangleRec(button, buttonPressed ? DARKBLUE : RED);
 	DrawText("GameScene", button.x + 10, button.y + 10, 20, WHITE);
+	SceneBase::Draw();
 }
 
 void MenuScene::PressButton()

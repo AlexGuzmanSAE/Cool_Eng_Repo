@@ -11,7 +11,6 @@
 GameEngine::GameEngine()
 {
     eventManagerI = new EventManager;
-    
 }
 
 GameEngine::~GameEngine()
