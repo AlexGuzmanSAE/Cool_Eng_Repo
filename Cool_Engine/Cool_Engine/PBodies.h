@@ -3,32 +3,19 @@
 #include "box2d/box2d.h"
 #include "raylib.h"
 #include "raymath.h"
+#include "PhysicsEntity.h"
 
-class PBox : public Entity
+class PBox : public PhysicsEntity
 {
 public:
-	b2BodyId bodyId;
 	Vector2 size;
-	Color color;
 
 	PBox(std::string name, std::string tag, Vector2 size, bool b, b2BodyId id)
-		: Entity(name, tag)
-		, bodyId(id)
+		: PhysicsEntity(name, tag, id, b)
 		, size(size)
 	{
-		b2Vec2 b2pos = b2Body_GetPosition(bodyId);
-		this->position = { b2pos.x, b2pos.y };
-		b2Rot b2rot = b2Body_GetRotation(bodyId);
-		this->angle = b2Rot_GetAngle(b2rot) * RAD2DEG;
-		color = b ? GREEN : BLUE;
 	}
-	~PBox() { if (b2Body_IsValid(bodyId)) b2DestroyBody(bodyId); }
-	void update() override
-	{
-		b2Vec2 b2pos = b2Body_GetPosition(bodyId);
-		position = { b2pos.x, b2pos.y };
-		angle = b2Rot_GetAngle(b2Body_GetRotation(bodyId)) * RAD2DEG;
-	}
+
 	void draw() override
 	{
 		Vector2 h = { size.x / 2.0f, size.y / 2.0f };
@@ -51,47 +38,25 @@ public:
 	b2BodyId getBodyId() const { return bodyId; }
 };
 
-class PCircle : public Entity
+class PCircle : public PhysicsEntity
+{
+	float radius;
+		
+public:
+	PCircle(std::string name, std::string tag, float radius, bool b, b2BodyId id)
+		: PhysicsEntity(name, tag, id, b)
+		, radius(radius)
 	{
-		b2BodyId bodyId;
-		float radius;
-		Color color;
+	}
 
-		PCircle(std::string name, std::string tag, float radius, bool b, b2BodyId id)
-			: Entity(name, tag)
-			, bodyId(id)
-			, radius(radius)
-		{
-			b2Vec2 b2pos = b2Body_GetPosition(bodyId);
-			this->position = { b2pos.x, b2pos.y };
+	void draw() override
+	{
+		DrawCircleLinesV(position, radius, color);
+		DrawCircleV(position, radius, Fade(color, 0.5f));
 
-			b2Rot b2rot = b2Body_GetRotation(bodyId);
-			this->angle = b2Rot_GetAngle(b2rot) * RAD2DEG;
-			this->color = b ? BLUE : RED;
-			color = b ? ORANGE : BLUE;
-		}
-
-		~PCircle() { if (b2Body_IsValid(bodyId)) b2DestroyBody(bodyId); }
-
-		void update() override
-		{
-			b2Vec2 b2pos = b2Body_GetPosition(bodyId);
-			position = { b2pos.x, b2pos.y };
-			angle = b2Rot_GetAngle(b2Body_GetRotation(bodyId)) * RAD2DEG;
-		}
-
-		void draw() override
-		{
-			DrawCircleLinesV(position, radius, color);
-			DrawCircleV(position, radius, Fade(color, 0.5f));
-
-			Vector2 dir = { cosf(angle * DEG2RAD), sinf(angle * DEG2RAD) };
-			Vector2 scaleDir = Vector2Scale(dir, radius);
-			Vector2 endPoint = Vector2Add(position, scaleDir);
-			DrawLineV(position, endPoint, color);
-		}
-
-
-	void setBodyId(const b2BodyId& id) { bodyId = id; }
-	b2BodyId getBodyId() const { return bodyId; }
+		Vector2 dir = { cosf(angle * DEG2RAD), sinf(angle * DEG2RAD) };
+		Vector2 scaleDir = Vector2Scale(dir, radius);
+		Vector2 endPoint = Vector2Add(position, scaleDir);
+		DrawLineV(position, endPoint, color);
+	}
 };

@@ -55,6 +55,12 @@
     <ClCompile Include="PhysicsSystem.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="EventTypes.h">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsEntity.h">
+      <Filter>include</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">

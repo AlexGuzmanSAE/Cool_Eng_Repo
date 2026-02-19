@@ -1,25 +1,26 @@
 #pragma once
 #include "SceneBase.h"
 #include "raylib.h"
-
-struct LoadMenuEvent
-{
-    //cambia escena
-};
+#include "EventTypes.h"
 
 class GameScene :
     public SceneBase
 {
 public:
 
+    static GameScene& instance();
+
     void Load() override;
     void UnLoad() override;
-    void Update() override;
+    void UpdateScene() override;
     void Draw() override;
+	void update() override;
     void PressButton();
-    void OnButtonPress(const LoadMenuEvent& e);
+    void OnButtonPress(const ClickButtonEvent& e);
 private:
     Rectangle button;
-    LoadMenuEvent event;
+    ClickButtonEvent event;
+
+    void onCollision(const CollisionEvent& event);
 };
 

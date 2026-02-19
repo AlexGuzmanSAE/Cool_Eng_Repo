@@ -1,33 +1,16 @@
 #pragma once
 #include "SceneBase.h"
-#include <string>
-#include "GameScene.h"
-#include "MenuScene.h"
 
 class SceneManager
 {
 public:
-	static SceneManager& instance()
-	{
-		static SceneManager sM;
-		return sM;
-	}
-	
-	void changeScene(std::string sceneName);
-	void UpdateScene();
-	void DrawScene();
-	SceneBase* GetCurrentScene();
+    static SceneManager& instance();
 
-	SceneBase* gameScene;
-	SceneBase* menuScene;
-	SceneBase* currentScene;
+    void update();
+    void draw();
+    void changeScene(SceneBase* newScene);
+
 private:
-	SceneManager();
-	SceneManager(const SceneManager&) = delete;
-	SceneManager& operator=(const SceneManager&) = delete;
-
-
-	std::string gameSceneStr = "GameScene";
-	std::string menuSceneStr = "MenuScene";
-	std::string currentSceneStr;
+    SceneManager() = default;
+    SceneBase* currentScene = nullptr;
 };

@@ -16,6 +16,7 @@ public:
 		, tag(tag)
 		, position({ 0.0f, 0.0f })
 		, active(false)
+		, angle(0.0f)
 	{
 	}
 

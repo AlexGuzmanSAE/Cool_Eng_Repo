@@ -1,47 +1,30 @@
 #include "SceneManager.h"
 
-SceneManager::SceneManager()
+SceneManager& SceneManager::instance()
 {
-	gameScene = new GameScene;
-	menuScene = new MenuScene;
-	currentScene = nullptr;
-}
-void SceneManager::changeScene(std::string sceneName)
-{
-	if (currentScene)
-	{
-		currentScene->UnLoad();
-	}
-
-	currentSceneStr = sceneName;
-
-	if (gameSceneStr == sceneName)
-	{
-		currentScene = gameScene;
-	}
-	else if (menuSceneStr == sceneName)
-	{
-		currentScene = menuScene;
-	}
-
-	if (currentScene)
-	{
-		currentScene->Load();
-	}
+    static SceneManager instance;
+    return instance;
 }
 
-void SceneManager::UpdateScene()
+void SceneManager::update()
 {
-	currentScene->Update();
+    if (currentScene)
+        currentScene->UpdateScene();
 }
 
-void SceneManager::DrawScene()
+void SceneManager::draw()
 {
-	currentScene->Draw();
+    if (currentScene)
+        currentScene->draw_scene();
 }
 
-SceneBase* SceneManager::GetCurrentScene()
+void SceneManager::changeScene(SceneBase* newScene)
 {
-	return currentScene;
-}
+    if (currentScene)
+        currentScene->UnLoad();
 
+    currentScene = newScene;
+
+    if (currentScene)
+        currentScene->Load();
+}

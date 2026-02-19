@@ -15,7 +15,7 @@ public:
 
     void Load() override;
     void UnLoad() override;
-    void Update() override;
+    void UpdateScene() override;
     void Draw() override;
     void PressButton() override;
     void OnButtonPress(const LoadGameEvent& e);

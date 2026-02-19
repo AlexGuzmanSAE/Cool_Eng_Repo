@@ -6,7 +6,7 @@
 
 void MenuScene::OnButtonPress(const LoadGameEvent& e)
 {
-	SceneManager::instance().changeScene("GameScene");
+	
 }
 
 void MenuScene::Load()
@@ -22,7 +22,7 @@ void MenuScene::UnLoad()
 {
 }
 
-void MenuScene::Update()
+void MenuScene::UpdateScene()
 {
 	if (CheckCollisionPointRec(GetMousePosition(), button) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 	{
@@ -34,7 +34,7 @@ void MenuScene::Update()
 void MenuScene::Draw()
 {
 	DrawRectangleRec(button, buttonPressed ? DARKBLUE : RED);
-	DrawText("GameScene", button.x + 10, button.y + 10, 20, WHITE);
+	DrawText("GameScene", int(button.x + 10), int(button.y + 10), 20, WHITE);
 	SceneBase::Draw();
 }
 

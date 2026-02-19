@@ -136,10 +136,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cool_Engine.cpp" />
+    <ClCompile Include="EventTypes.h" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="MenuScene.cpp" />
+    <ClCompile Include="PhysicsEntity.h" />
     <ClCompile Include="PhysicsSystem.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneBase.cpp" />

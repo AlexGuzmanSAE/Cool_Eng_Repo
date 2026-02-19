@@ -15,7 +15,8 @@ public:
 	void init_world()
 	{
 		b2WorldDef worldDef = b2DefaultWorldDef();
-		worldDef.gravity = { 0.0f, 980.0f };
+		float lengthUnitsPerMeter = 40.f;
+		worldDef.gravity = { 0.0f, 9.8f * lengthUnitsPerMeter };
 		worldId = b2CreateWorld(&worldDef);
 	}
 
@@ -45,11 +46,20 @@ public:
 		b2BodyDef bodyDef = b2DefaultBodyDef();
 		bodyDef.type = isDynamic ? b2_dynamicBody : b2_staticBody;
 		bodyDef.position = { position.x, position.y };
+		bodyDef.linearDamping = 0.0f;
+		bodyDef.angularDamping = 0.0f;
 		b2BodyId bodyId = b2CreateBody(worldId, &bodyDef);
 		b2ShapeDef shapeDef = b2DefaultShapeDef();
-		b2Polygon box = b2MakeBox(size.x / 2.0f, size.y / 2.0f);
+		shapeDef.density = 0.001f;
+		shapeDef.enableContactEvents = true;
 
-		return std::make_shared<PBox>(name, tag, size, isDynamic, bodyId);
+		b2Polygon box = b2MakeBox(size.x / 2.0f, size.y / 2.0f);
+		b2CreatePolygonShape(bodyId, &shapeDef, &box);
+		auto boxEntity = std::make_shared<PBox>(name, tag, size, isDynamic, bodyId);
+
+		b2Body_SetUserData(bodyId, boxEntity.get());
+		
+		return boxEntity;
 	}
 	
 	std::shared_ptr<PCircle> make_circle(std::string name, std::string tag, float radius, bool isDynamic, Vector2 position)
@@ -57,11 +67,19 @@ public:
 		b2BodyDef bodyDef = b2DefaultBodyDef();
 		bodyDef.type = isDynamic ? b2_dynamicBody : b2_staticBody;
 		bodyDef.position = { position.x, position.y };
+		bodyDef.linearDamping = 0.0f;
+		bodyDef.angularDamping = 0.0f;
 		b2BodyId bodyId = b2CreateBody(worldId, &bodyDef);
+		b2Body_SetLinearDamping(bodyId, 0.0f);
 		b2ShapeDef shapeDef = b2DefaultShapeDef();
-		b2Circle circle = { {0.0f, 0.0f}, radius };
+		shapeDef.density = 0.01f;
+		shapeDef.enableContactEvents = true; 
 
-		return std::make_shared<PCircle>(name, tag, radius, isDynamic, bodyId);
+		b2Circle circle = { {0.0f,  0.0f}, radius };
+		auto circleEntity = std::make_shared<PCircle>(name, tag, radius, isDynamic, bodyId);
+
+		b2Body_SetUserData(bodyId, circleEntity.get());
+		return circleEntity;
 	}
 
 private:

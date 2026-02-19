@@ -4,6 +4,7 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include "box2d/base.h"
+#include "GameScene.h"
 
 #define RAYGUI_IMPLEMENTATION
 #include "include/raygui.h"
@@ -21,13 +22,13 @@ void GameEngine::Init()
 {
     InitWindow(screenWidth, screenHeight, "Cool_Engine");
 	InitAudioDevice();
-    SceneManager::instance().changeScene("MenuScene");
+    SceneManager::instance().changeScene(&GameScene::instance());
     SetTargetFPS(60);
 }
 
 void GameEngine::Update()
 {
-    SceneManager::instance().UpdateScene();
+    SceneManager::instance().update();
 }
 
 void GameEngine::Draw()
@@ -35,7 +36,7 @@ void GameEngine::Draw()
     BeginDrawing();
     ClearBackground(RAYWHITE);
 
-    SceneManager::instance().DrawScene();
+	SceneManager::instance().draw();
 
     EndDrawing();
 }
