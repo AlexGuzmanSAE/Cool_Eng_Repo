@@ -26,6 +26,9 @@
     <Filter Include="assets\music">
       <UniqueIdentifier>{cd930726-b6c3-4d9e-b546-c253bb6d4bee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="assets\json">
+      <UniqueIdentifier>{318e7039-0ff5-48b1-9fa6-e3679ee786bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Log.cpp">
@@ -104,5 +107,10 @@
     <Font Include="assets\fonts\American Captain.ttf">
       <Filter>assets\fonts</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gameScene.json">
+      <Filter>assets\json</Filter>
+    </None>
   </ItemGroup>
 </Project>

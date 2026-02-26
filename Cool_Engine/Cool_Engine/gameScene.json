@@ -1,0 +1,10 @@
+{
+  "SceneName": "MainScene",
+  "EntitiesArr": [
+    {
+      "type": "pbox",
+      "x": 100,
+      "y": 100
+    }
+  ]
+}

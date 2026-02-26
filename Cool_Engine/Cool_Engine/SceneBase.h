@@ -6,14 +6,24 @@
 #include <vector>
 #include <algorithm>
 
+
 class SceneBase
 {
 public:
 	std::vector<std::shared_ptr<Entity>> entities;
-	
+		
+	//Camera2D camera;
 	EventManager& eventManager = EventManager::instance();
 	ResourceManager& resourceManager = ResourceManager::instance();
 	PhysicsSystem& physics = PhysicsSystem::instance();
+
+
+	//SceneBase()
+	//	: buttonPressed(false)
+	//{
+	//	//camera.offset = { 0.0f, 0.0f};
+	//	//camera.zoom = 20.0f;
+	//}
 
 	virtual void UpdateScene()
 	{
@@ -33,11 +43,13 @@ public:
 
 	void draw_scene()
 	{
+		//BeginMode2D(camera);
 		for (auto& entity : entities)
 		{
 			entity->draw();
 		}
 		Draw();
+		//EndMode2D();
 	}
 
 

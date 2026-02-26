@@ -2,6 +2,15 @@
 #include "Entity.h"
 #include "box2d/box2d.h"
 
+class PhysicsEntity;
+
+struct Collision
+{
+	PhysicsEntity* self;
+    PhysicsEntity* other;
+    float force;
+};
+
 class PhysicsEntity : public Entity {
 public:
     b2BodyId bodyId;

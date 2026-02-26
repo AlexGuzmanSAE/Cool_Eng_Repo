@@ -6,8 +6,8 @@
 #include "box2d/base.h"
 #include "GameScene.h"
 
-#define RAYGUI_IMPLEMENTATION
-#include "include/raygui.h"
+//#define RAYGUI_IMPLEMENTATION
+//#include "include/raygui.h"
 
 GameEngine::GameEngine()
 {

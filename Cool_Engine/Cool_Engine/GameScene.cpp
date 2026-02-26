@@ -5,9 +5,14 @@
 #include "SceneManager.h"
 #include "EventTypes.h"
 #include "Log.h"
+#include <iostream>
+//#include <fstream>
+//#include "nlohmann/json.hpp"
+//
+//using json = nlohmann::json;
 
 GameScene& GameScene::instance()
-{
+{ 
 	static GameScene instance;
 	return instance;
 }
@@ -22,8 +27,22 @@ void GameScene::Load()
 	
 	button = { 350, 280, 100, 50 };
 	
-	EventManager::instance().suscribe(this, &GameScene::OnButtonPress);
+	//EventManager::instance().suscribe(this, &GameScene::OnButtonPress);
 	EventManager::instance().suscribe<CollisionEvent>(this, &GameScene::onCollision);
+
+	//std::ifstream file("assets/json/gameScene.json");
+	//if (file.is_open())
+	//{
+	//	
+	// json j;
+	//	file >> j;
+	//	Log::println("JSON loaded successfully!");
+	//	Log::println("Button position: (" + std::to_string(j["button"]["x"].get<float>()) + ", " + std::to_string(j["button"]["y"].get<float>()) + ")");
+	//}
+	//else
+	//{
+	//	Log::println("Failed to open JSON file!");
+	//}
 }
 
 void GameScene::UnLoad()
@@ -49,13 +68,12 @@ void GameScene::Draw()
 {
 	DrawRectangleRec(button, buttonPressed ? RED : DARKBLUE);
 	DrawText("MenuScene", int(button.x + 10), int(button.y + 10), 20, WHITE);
-	SceneBase::Draw();
+	SceneBase::draw_scene();
 }
 
 void GameScene::update()
 {
 }
-
 
 
 void GameScene::PressButton()

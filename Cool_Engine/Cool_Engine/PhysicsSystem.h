@@ -1,4 +1,5 @@
 #pragma once
+#include "box2d/box2d.h"
 #include "PBodies.h"
 #include <memory>
 
@@ -15,8 +16,7 @@ public:
 	void init_world()
 	{
 		b2WorldDef worldDef = b2DefaultWorldDef();
-		float lengthUnitsPerMeter = 40.f;
-		worldDef.gravity = { 0.0f, 9.8f * lengthUnitsPerMeter };
+		worldDef.gravity = { 0.0f, 9.8f };
 		worldId = b2CreateWorld(&worldDef);
 	}
 
@@ -37,7 +37,12 @@ public:
 
 	void update(float dt)
 	{
-		b2World_Step(worldId, dt, 4);
+		b2World_Step(worldId, dt, 12);
+	}
+
+	void process_collisions()
+	{
+
 	}
 
 	std::shared_ptr<PBox> create_box(std::string name, std::string tag, 
