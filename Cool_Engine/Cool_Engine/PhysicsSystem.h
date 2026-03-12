@@ -95,8 +95,8 @@ public:
 		b2BodyDef bodyDef = b2DefaultBodyDef();
 		bodyDef.type = isDynamic ? b2_dynamicBody : b2_staticBody;
 		bodyDef.position = { position.x, position.y };
-		bodyDef.linearDamping = 0.55f;
-		bodyDef.angularDamping = 0.8f;
+		bodyDef.linearDamping = 0.8f;
+		bodyDef.angularDamping = 1.2f;
 
 		b2BodyId bodyId = b2CreateBody(worldId, &bodyDef);
 
@@ -108,7 +108,7 @@ public:
 
 		b2Circle circle = { {0.0f, 0.0f}, radius };
 		b2CreateCircleShape(bodyId, &shapeDef, &circle);
-
+		
 		auto entity = std::make_shared<PCircle>(name, tag, radius, isDynamic, bodyId);
 		b2Body_SetUserData(bodyId, entity.get());
 		return entity;

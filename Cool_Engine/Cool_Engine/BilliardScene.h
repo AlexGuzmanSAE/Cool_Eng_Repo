@@ -28,7 +28,7 @@ private:
     void update() override {} 
     void PressButton() override {}
 
-    PhysicsSystem& physics = PhysicsSystem::instance();
+    
 
     static constexpr float TABLE_X = 100.0f;
     static constexpr float TABLE_Y = 100.0f;
@@ -39,8 +39,8 @@ private:
     static constexpr float BALL_R = 11.0f;
     static constexpr float POCKET_R = 16.0f;
 
-    static constexpr float MAX_DRAG = 140.0f;
-    static constexpr float MAX_IMPULSE = 22.0f;
+    static constexpr float MAX_IMPULSE = 500.0f * 10000;
+    static constexpr float MAX_DRAG = 200.0f;
 
     std::shared_ptr<PCircle>              cueBall;
     std::vector<std::shared_ptr<PCircle>> balls;

@@ -5,6 +5,7 @@
 #include "ResourceManager.h"
 #include "box2d/base.h"
 #include "GameScene.h"
+#include "BilliardScene.h"
 
 //#define RAYGUI_IMPLEMENTATION
 //#include "include/raygui.h"
@@ -22,7 +23,7 @@ void GameEngine::Init()
 {
     InitWindow(screenWidth, screenHeight, "Cool_Engine");
 	InitAudioDevice();
-    SceneManager::instance().changeScene(&GameScene::instance());
+    SceneManager::instance().changeScene(&BilliardScene::instance());
     SetTargetFPS(60);
 }
 
