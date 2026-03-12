@@ -64,6 +64,9 @@
     <ClCompile Include="PhysicsEntity.h">
       <Filter>include</Filter>
     </ClCompile>
+    <ClCompile Include="BilliardScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -100,6 +103,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="PBodies.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="BilliardScene.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,6 +3,7 @@
 #include "raylib.h"
 #include "EventTypes.h"
 
+
 class GameScene :
     public SceneBase
 {
@@ -18,6 +19,7 @@ public:
     void PressButton();
     void OnButtonPress(const ClickButtonEvent& e);
 private:
+    
     Rectangle button;
     ClickButtonEvent event;
 

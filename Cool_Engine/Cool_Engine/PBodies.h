@@ -58,4 +58,6 @@ public:
 		Vector2 endPoint = Vector2Add(position, scaleDir);
 		DrawLineV(position, endPoint, color);
 	}
+
+	b2BodyId getBodyId() const { return bodyId; }
 };

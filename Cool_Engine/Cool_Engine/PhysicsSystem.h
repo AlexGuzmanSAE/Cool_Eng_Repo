@@ -80,11 +80,62 @@ public:
 		shapeDef.density = 0.01f;
 		shapeDef.enableContactEvents = true; 
 
-		b2Circle circle = { {0.0f,  0.0f}, radius };
+		b2Circle circle = { {0.0f, 0.0f}, radius };
+		b2CreateCircleShape(bodyId, &shapeDef, &circle);
 		auto circleEntity = std::make_shared<PCircle>(name, tag, radius, isDynamic, bodyId);
 
 		b2Body_SetUserData(bodyId, circleEntity.get());
 		return circleEntity;
+	}
+
+	std::shared_ptr<PCircle> make_billiard_circle(
+		std::string name, std::string tag,
+		float radius, bool isDynamic, Vector2 position)
+	{
+		b2BodyDef bodyDef = b2DefaultBodyDef();
+		bodyDef.type = isDynamic ? b2_dynamicBody : b2_staticBody;
+		bodyDef.position = { position.x, position.y };
+		bodyDef.linearDamping = 0.55f;
+		bodyDef.angularDamping = 0.8f;
+
+		b2BodyId bodyId = b2CreateBody(worldId, &bodyDef);
+
+		b2ShapeDef shapeDef = b2DefaultShapeDef();
+		shapeDef.density = 1.0f;
+		shapeDef.material.friction = 0.05f;
+		shapeDef.material.restitution = 0.92f;
+		shapeDef.enableContactEvents = true;
+
+		b2Circle circle = { {0.0f, 0.0f}, radius };
+		b2CreateCircleShape(bodyId, &shapeDef, &circle);
+
+		auto entity = std::make_shared<PCircle>(name, tag, radius, isDynamic, bodyId);
+		b2Body_SetUserData(bodyId, entity.get());
+		return entity;
+	}
+
+	std::shared_ptr<PBox> create_billiard_box(
+		std::string name, std::string tag,
+		Vector2 size, bool isDynamic, Vector2 position)
+	{
+		b2BodyDef bodyDef = b2DefaultBodyDef();
+		bodyDef.type = isDynamic ? b2_dynamicBody : b2_staticBody;
+		bodyDef.position = { position.x, position.y };
+
+		b2BodyId bodyId = b2CreateBody(worldId, &bodyDef);
+
+		b2ShapeDef shapeDef = b2DefaultShapeDef();
+		shapeDef.density = 0.0f;
+		shapeDef.material.friction = 0.01f;
+		shapeDef.material.restitution = 0.85f;  
+		
+
+		b2Polygon box = b2MakeBox(size.x / 2.0f, size.y / 2.0f);
+		b2CreatePolygonShape(bodyId, &shapeDef, &box);
+
+		auto entity = std::make_shared<PBox>(name, tag, size, isDynamic, bodyId);
+		b2Body_SetUserData(bodyId, entity.get());
+		return entity;
 	}
 
 private:

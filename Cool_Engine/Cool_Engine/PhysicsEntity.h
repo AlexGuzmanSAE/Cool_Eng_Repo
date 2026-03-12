@@ -94,4 +94,13 @@ public:
             b2Body_SetAwake(bodyId, awake);
         }
     }
+
+    void syncFromBody() {
+        if (!b2Body_IsValid(bodyId)) return;
+        b2Vec2 pos = b2Body_GetPosition(bodyId);
+        position = { pos.x, pos.y };
+        b2Rot rot = b2Body_GetRotation(bodyId);
+        angle = b2Rot_GetAngle(rot) * RAD2DEG;
+    }
+
 };
