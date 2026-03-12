@@ -2,7 +2,6 @@
 #include "box2d/box2d.h"
 #include "PBodies.h"
 #include <memory>
-#include "sol/sol.hpp"
 
 class PhysicsSystem
 {

@@ -1,7 +1,7 @@
 #pragma once
 #include "box2d/box2d.h"
-#include "raylib.h"
-#include "raymath.h"
+#include "raylib/raylib.h"
+#include "raylib/raymath.h"
 #include "PhysicsEntity.h"
 
 class PBox : public PhysicsEntity

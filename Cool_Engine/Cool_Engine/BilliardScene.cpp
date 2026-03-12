@@ -1,6 +1,6 @@
 #include "BilliardScene.h"
-#include "raylib.h"
-#include "raymath.h"
+#include "raylib/raylib.h"
+#include "raylib/raymath.h"
 #include "box2d/box2d.h"
 #include <cmath>
 #include <string>
@@ -21,6 +21,7 @@ void BilliardScene::Load()
 
     state = BilliardState::AIMING;
     score = 0;
+	bindRaylib();
 }
 
 void BilliardScene::UnLoad()
@@ -167,8 +168,51 @@ void BilliardScene::checkPockets()
     }
 }
 
+void BilliardScene::bindRaylib()
+{
+    lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::table);
+    sol::table rl = lua.create_named_table("rl");
+
+    rl.set_function("draw_circle", [](float x, float y, float r, sol::optional<Color> c)
+        {
+            Color color = c.value_or(GREEN);
+            Vector2 center = { x, y };
+            DrawCircleV(center, r, color);
+        });
+    rl.set_function("mouse_pressed", &IsMouseButtonPressed);
+    rl.set_function("mouse_x", &GetMouseX);
+    rl.set_function("mouse_y", &GetMouseY);
+    //rl.set_function("to_world", [&](float sx, float sy)
+    //    {
+    //        /*Vector2 world = GetScreenToWorld2D({sx, sy}, cam);
+    //        return std::make_tuple(world.x, world.y);*/
+    //    });
+    rl.set_function("print", [](std::string message)
+        {
+            std::cout << "[LUA]: " << message << std::endl;
+        });
+    rl["green"] = GREEN;
+    auto result = lua.script_file("assets/scripts/game_scene.lua");
+    if (result.valid())
+    {
+        luaUpdate = lua["update"];
+        luaDraw = lua["draw"];
+        std::cout << "Script cargado y funciones vinculadas." << std::endl;
+    }
+    else
+    {
+        sol::error err = result;
+        std::cerr << "Error al cargar el script: " << err.what() << std::endl;
+    }
+}
+
 void BilliardScene::UpdateScene()
 {
+    if (luaUpdate)
+    {
+		//std::cout << "Llamando a luaUpdate..." << std::endl;
+        luaUpdate();
+    }
     float dt = GetFrameTime();
 
     physics.update(dt);
@@ -242,6 +286,11 @@ void BilliardScene::UpdateScene()
 
 void BilliardScene::Draw()
 {
+    if (luaDraw)
+    {
+        luaDraw();
+    }
+
     DrawRectangle((int)(TABLE_X - WALL_T - 6), (int)(TABLE_Y - WALL_T - 6),
         (int)(TABLE_W + (WALL_T + 6) * 2), (int)(TABLE_H + (WALL_T + 6) * 2),
         TABLE_BORDER);

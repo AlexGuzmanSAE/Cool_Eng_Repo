@@ -1,5 +1,5 @@
 #include "GameEngine.h"
-#include "raylib.h"
+#include "raylib/raylib.h"
 #include "Log.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"

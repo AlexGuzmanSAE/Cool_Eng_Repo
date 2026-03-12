@@ -5,6 +5,7 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include "sol/sol.hpp"
 
 enum class BilliardState {
     AIMING,
@@ -63,4 +64,12 @@ private:
     static constexpr Color FELT_COLOR = { 22,  99,  40, 255 };
     static constexpr Color CUSHION_COLOR = { 80,  50,  20, 255 };
     static constexpr Color TABLE_BORDER = { 50,  30,  10, 255 };
+
+    //LUA
+    void bindRaylib();
+
+    sol::state lua;
+    sol::function luaUpdate;
+    sol::function luaDraw;
+
 };

@@ -1,5 +1,5 @@
 #include "GameScene.h"
-#include "raylib.h"
+#include "raylib/raylib.h"
 #include "EventManager.h"
 #include <string>
 #include "SceneManager.h"
@@ -22,9 +22,47 @@ void GameScene::onCollision(const CollisionEvent& event)
 	Log::println("¡Colisión detectada entre " + event.a->getName());
 }
 
+void GameScene::bindRaylib()
+{
+	lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::table);
+	sol::table rl = lua.create_named_table("raylib");
+
+	rl.set_function("draw_circle", [](float x, float y, float r, sol::optional<Color> c)
+		{
+			Color color = c.value_or(GREEN);
+			Vector2 center = { x, y };
+			DrawCircleV(center, r, color);
+		});
+	rl.set_function("mouse_pressed", &IsMouseButtonPressed);
+	rl.set_function("mouse_x", &GetMouseX);
+	rl.set_function("mouse_y", &GetMouseY);
+	//rl.set_function("to_world", [&](float sx, float sy)
+	//    {
+	//        /*Vector2 world = GetScreenToWorld2D({sx, sy}, cam);
+	//        return std::make_tuple(world.x, world.y);*/
+	//    });
+	rl.set_function("print", [](std::string message)
+		{
+			std::cout << "[LUA]: " << message << std::endl;
+		});
+	rl["green"] = GREEN;
+	auto result = lua.script_file("assets/scripts/game_scene.lua");
+	if (result.valid())
+	{
+		luaUpdate = lua["update"];
+		luaDraw = lua["draw"];
+		std::cout << "Script cargado y funciones vinculadas." << std::endl;
+	}
+	else
+	{
+		sol::error err = result;
+		std::cerr << "Error al cargar el script: " << err.what() << std::endl;
+	}
+}
+
 void GameScene::Load()
 {
-	
+	bindRaylib();
 	button = { 350, 280, 100, 50 };
 	
 	//EventManager::instance().suscribe(this, &GameScene::OnButtonPress);
@@ -51,6 +89,14 @@ void GameScene::UnLoad()
 
 void GameScene::UpdateScene()
 {
+	if (luaUpdate)
+
+	{
+	luaUpdate();
+
+	}
+
+
 	if (CheckCollisionPointRec(GetMousePosition(), button) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 	{
 		EventManager::instance().emit(event);
@@ -66,6 +112,12 @@ void GameScene::UpdateScene()
 
 void GameScene::Draw()
 {
+	if (luaDraw)
+
+	{
+		luaDraw();
+
+	}
 	DrawRectangleRec(button, buttonPressed ? RED : DARKBLUE);
 	DrawText("MenuScene", int(button.x + 10), int(button.y + 10), 20, WHITE);
 	SceneBase::draw_scene();

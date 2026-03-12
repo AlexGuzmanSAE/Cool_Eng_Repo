@@ -1,7 +1,9 @@
 #pragma once
 #include "SceneBase.h"
-#include "raylib.h"
+#include "raylib/raylib.h"
 #include "EventTypes.h"
+#include "sol/sol.hpp"
+
 
 
 class GameScene :
@@ -24,5 +26,13 @@ private:
     ClickButtonEvent event;
 
     void onCollision(const CollisionEvent& event);
+
+    //LUA
+    void bindRaylib();
+
+    sol::state lua;
+    sol::function luaUpdate;
+    sol::function luaDraw;
+
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "SceneBase.h"
-#include "raylib.h"
+#include "raylib/raylib.h"
 #include <memory>
 
 struct LoadGameEvent

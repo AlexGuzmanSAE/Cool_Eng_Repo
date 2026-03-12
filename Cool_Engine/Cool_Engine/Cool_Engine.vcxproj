@@ -109,14 +109,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)lib\include;$(ProjectDir)lib;$(ProjectDir)src;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)lib\include;$(ProjectDir)lib;$(ProjectDir)src;$(ProjectDir);$(ProjectDir)lib\include\lua</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>winmm.lib;box2dd.lib;gdi32.lib;opengl32.lib
-;raylib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;box2dd.lib;gdi32.lib;opengl32.lib;lua54.lib;raylib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -145,37 +145,37 @@
   <ItemGroup>
     <ClCompile Include="BilliardScene.cpp" />
     <ClCompile Include="Cool_Engine.cpp" />
-    <ClCompile Include="EventTypes.h" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="MenuScene.cpp" />
-    <ClCompile Include="PhysicsEntity.h" />
     <ClCompile Include="PhysicsSystem.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BilliardScene.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="EventManager.h" />
-    <ClInclude Include="GameEngine.h" />
-    <ClInclude Include="GameScene.h" />
-    <ClInclude Include="Log.h" />
-    <ClInclude Include="MenuScene.h" />
-    <ClInclude Include="PBodies.h" />
-    <ClInclude Include="PhysicsSystem.h" />
-    <ClInclude Include="ResourceManager.h" />
-    <ClInclude Include="SceneBase.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="src\raygui.h" />
-  </ItemGroup>
-  <ItemGroup>
     <Font Include="assets\fonts\American Captain.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="gameScene.json" />
+    <None Include="assets\scripts\game_scene.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\BilliardScene.h" />
+    <ClInclude Include="include\Entity.h" />
+    <ClInclude Include="include\EventManager.h" />
+    <ClInclude Include="include\EventTypes.h" />
+    <ClInclude Include="include\GameEngine.h" />
+    <ClInclude Include="include\GameScene.h" />
+    <ClInclude Include="include\Log.h" />
+    <ClInclude Include="include\MenuScene.h" />
+    <ClInclude Include="include\PBodies.h" />
+    <ClInclude Include="include\PhysicsEntity.h" />
+    <ClInclude Include="include\PhysicsSystem.h" />
+    <ClInclude Include="include\ResourceManager.h" />
+    <ClInclude Include="include\SceneBase.h" />
+    <ClInclude Include="include\SceneManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
