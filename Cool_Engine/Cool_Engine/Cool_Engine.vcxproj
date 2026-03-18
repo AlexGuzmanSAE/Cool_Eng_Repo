@@ -109,7 +109,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)lib\include;$(ProjectDir)lib;$(ProjectDir)src;$(ProjectDir);$(ProjectDir)lib\include\lua</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)lib\include;$(ProjectDir)include;$(ProjectDir)lib;$(ProjectDir)src;$(ProjectDir);$(ProjectDir)lib\include\lua</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -143,46 +143,47 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AudioHelper.cpp" />
-    <ClCompile Include="BilliardScene.cpp" />
-    <ClCompile Include="Cool_Engine.cpp" />
-    <ClCompile Include="force_link.cpp" />
-    <ClCompile Include="GameEngine.cpp" />
-    <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="Log.cpp" />
-    <ClCompile Include="MenuScene.cpp" />
-    <ClCompile Include="PhysicsSystem.cpp" />
-    <ClCompile Include="raygui_impl.cpp" />
-    <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="SaveSistem.cpp" />
-    <ClCompile Include="SceneBase.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <Font Include="assets\fonts\American Captain.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\scripts\game_scene.lua" />
     <None Include="gameScene.json" />
+    <None Include="include\gameScene.json" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AudioHelper.h" />
-    <ClInclude Include="GameState.h" />
+    <ClCompile Include="src\AudioHelper.cpp" />
+    <ClCompile Include="src\BilliardScene.cpp" />
+    <ClCompile Include="src\Cool_Engine.cpp" />
+    <ClCompile Include="src\force_link.cpp" />
+    <ClCompile Include="src\GameEngine.cpp" />
+    <ClCompile Include="src\GameScene.cpp" />
+    <ClCompile Include="src\Log.cpp" />
+    <ClCompile Include="src\MenuScene.cpp" />
+    <ClCompile Include="src\PhysicsSystem.cpp" />
+    <ClCompile Include="src\raygui_impl.cpp" />
+    <ClCompile Include="src\ResourceManager.cpp" />
+    <ClCompile Include="src\SaveSistem.cpp" />
+    <ClCompile Include="src\SceneBase.cpp" />
+    <ClCompile Include="src\SceneManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\AudioHelper.h" />
     <ClInclude Include="include\BilliardScene.h" />
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\EventManager.h" />
     <ClInclude Include="include\EventTypes.h" />
     <ClInclude Include="include\GameEngine.h" />
     <ClInclude Include="include\GameScene.h" />
+    <ClInclude Include="include\GameState.h" />
     <ClInclude Include="include\Log.h" />
     <ClInclude Include="include\MenuScene.h" />
     <ClInclude Include="include\PBodies.h" />
     <ClInclude Include="include\PhysicsEntity.h" />
     <ClInclude Include="include\PhysicsSystem.h" />
     <ClInclude Include="include\ResourceManager.h" />
+    <ClInclude Include="include\SaveSistem.h" />
     <ClInclude Include="include\SceneBase.h" />
     <ClInclude Include="include\SceneManager.h" />
-    <ClInclude Include="SaveSistem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

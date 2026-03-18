@@ -34,50 +34,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Log.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngine.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Cool_Engine.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBase.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsSystem.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="BilliardScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="raygui_impl.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="AudioHelper.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="force_link.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="SaveSistem.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <Font Include="assets\fonts\American Captain.ttf">
       <Filter>assets\fonts</Filter>
     </Font>
@@ -87,8 +43,58 @@
       <Filter>assets\json</Filter>
     </None>
     <None Include="assets\scripts\game_scene.lua" />
+    <None Include="include\gameScene.json">
+      <Filter>include</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AudioHelper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BilliardScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cool_Engine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\force_link.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEngine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Log.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PhysicsSystem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\raygui_impl.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ResourceManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SaveSistem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneBase.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\AudioHelper.h">
+      <Filter>include</Filter>
+    </ClInclude>
     <ClInclude Include="include\BilliardScene.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -105,6 +111,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\GameScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameState.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Log.h">
@@ -125,19 +134,13 @@
     <ClInclude Include="include\ResourceManager.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\SaveSistem.h">
+      <Filter>include</Filter>
+    </ClInclude>
     <ClInclude Include="include\SceneBase.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\SceneManager.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioHelper.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveSistem.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
