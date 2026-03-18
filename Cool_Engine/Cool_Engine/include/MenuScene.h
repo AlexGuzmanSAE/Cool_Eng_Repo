@@ -1,30 +1,31 @@
 #pragma once
 #include "SceneBase.h"
-#include "raylib/raylib.h"
-#include <memory>
+#include "include/raygui.h"
 
-struct LoadGameEvent
-{
-    //cambia escena
-};
-
-class MenuScene :
-    public SceneBase
+class MenuScene : public SceneBase
 {
 public:
+    static MenuScene& instance()
+    {
+        static MenuScene inst;
+        return inst;
+    }
 
-    void Load() override;
-    void UnLoad() override;
-    void UpdateScene() override;
-    void Draw() override;
-    void PressButton() override;
-    void OnButtonPress(const LoadGameEvent& e);
+    void Load()        override;
+    void UnLoad()      override;
+    void Draw()        override;
+    void update()      override;
+    void PressButton() override {}
 
 private:
-    Rectangle button;
-    LoadGameEvent event;
+    MenuScene() = default;
 
-	std::shared_ptr<Music> music;
-	std::shared_ptr<Font> font;
+    bool goToQuit = false;
+    float pulseTimer = 0.f;
+    bool  goToBilliard = false;
+
+    int sw = 0, sh = 0;
+    Rectangle btnPlay{};
+    Rectangle btnSettings{};
+    Rectangle btnQuit{};
 };
-

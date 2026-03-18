@@ -4,18 +4,18 @@
 class GameEngine
 {
 public:
-	GameEngine();
-	~GameEngine();
+    GameEngine();
+    ~GameEngine();
+    void Init();
+    void Update();
+    void Draw();
+    void Run();
+    void ShutDown();
 
-	void Init();
-	void Update();
-	void Draw();
-	void Run();
-	void ShutDown();
+    static bool shouldQuit;
+
 private:
-	const int screenWidth = 800;
-	const int screenHeight = 450;
-
-	EventManager* eventManagerI;
+    int screenWidth = 1280;
+    int screenHeight = 720;
+    EventManager* eventManagerI = nullptr;
 };
-

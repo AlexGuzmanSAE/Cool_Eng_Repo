@@ -171,156 +171,181 @@ void BilliardScene::checkPockets()
 void BilliardScene::bindRaylib()
 {
     lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::table);
+
+    lua.new_usertype<Color>("Color",
+        "r", &Color::r, "g", &Color::g,
+        "b", &Color::b, "a", &Color::a);
+
     sol::table rl = lua.create_named_table("rl");
 
-    rl.set_function("draw_circle", [](float x, float y, float r, sol::optional<Color> c)
-        {
-            Color color = c.value_or(GREEN);
-            Vector2 center = { x, y };
-            DrawCircleV(center, r, color);
-        });
+    rl.set_function("draw_circle",
+        [](float x, float y, float r, Color c) { DrawCircleV({ x,y }, r, c); });
+    rl.set_function("draw_circle_lines",
+        [](float x, float y, float r, Color c) { DrawCircleLinesV({ x,y }, r, c); });
+    rl.set_function("draw_rectangle",
+        [](float x, float y, float w, float h, Color c) {
+            DrawRectangle((int)x, (int)y, (int)w, (int)h, c); });
+    rl.set_function("draw_line",
+        [](float x1, float y1, float x2, float y2, Color c) {
+            DrawLine((int)x1, (int)y1, (int)x2, (int)y2, c); });
+    rl.set_function("draw_line_ex",
+        [](float x1, float y1, float x2, float y2, float thick, Color c) {
+            DrawLineEx({ x1,y1 }, { x2,y2 }, thick, c); });
+    rl.set_function("draw_triangle",
+        [](float x1, float y1, float x2, float y2, float x3, float y3, Color c) {
+            DrawTriangle({ x1,y1 }, { x2,y2 }, { x3,y3 }, c); });
+    rl.set_function("draw_text",
+        [](const std::string& s, int x, int y, int sz, Color c) {
+            DrawText(s.c_str(), x, y, sz, c); });
+    rl.set_function("measure_text",
+        [](const std::string& s, int sz) { return MeasureText(s.c_str(), sz); });
+    rl.set_function("fade",
+        [](Color c, float a) { return Fade(c, a); });
+    rl.set_function("make_color",
+        [](int r, int g, int b, int a) -> Color {
+            return { (unsigned char)r,(unsigned char)g,
+                    (unsigned char)b,(unsigned char)a }; });
+
     rl.set_function("mouse_pressed", &IsMouseButtonPressed);
+    rl.set_function("mouse_down", &IsMouseButtonDown);
+    rl.set_function("mouse_released", &IsMouseButtonReleased);
     rl.set_function("mouse_x", &GetMouseX);
     rl.set_function("mouse_y", &GetMouseY);
-    //rl.set_function("to_world", [&](float sx, float sy)
-    //    {
-    //        /*Vector2 world = GetScreenToWorld2D({sx, sy}, cam);
-    //        return std::make_tuple(world.x, world.y);*/
-    //    });
-    rl.set_function("print", [](std::string message)
-        {
-            std::cout << "[LUA]: " << message << std::endl;
+    rl.set_function("screen_width", &GetScreenWidth);
+    rl.set_function("screen_height", &GetScreenHeight);
+
+    rl["WHITE"] = WHITE;     rl["BLACK"] = BLACK;
+    rl["RED"] = RED;       rl["GREEN"] = GREEN;
+    rl["BLUE"] = BLUE;      rl["YELLOW"] = YELLOW;
+    rl["ORANGE"] = ORANGE;    rl["PURPLE"] = PURPLE;
+    rl["GRAY"] = GRAY;      rl["DARKGRAY"] = DARKGRAY;
+    rl["LIGHTGRAY"] = LIGHTGRAY; rl["GOLD"] = GOLD;
+    rl["BROWN"] = BROWN;     rl["BEIGE"] = BEIGE;
+    rl["MAROON"] = MAROON;    rl["DARKGREEN"] = DARKGREEN;
+
+    rl["MOUSE_LEFT"] = MOUSE_BUTTON_LEFT;
+    rl["MOUSE_RIGHT"] = MOUSE_BUTTON_RIGHT;
+
+    rl.set_function("print",
+        [](const std::string& s) { std::cout << "[LUA] " << s << "\n"; });
+
+    sol::table game = lua.create_named_table("game");
+
+    game["TABLE_X"] = TABLE_X;    game["TABLE_Y"] = TABLE_Y;
+    game["TABLE_W"] = TABLE_W;    game["TABLE_H"] = TABLE_H;
+    game["WALL_T"] = WALL_T;     game["BALL_R"] = BALL_R;
+    game["POCKET_R"] = POCKET_R;   game["MAX_DRAG"] = MAX_DRAG;
+    game["MAX_IMPULSE"] = MAX_IMPULSE;
+
+    game.set_function("get_state", [this]() -> std::string {
+        switch (state) {
+        case BilliardState::AIMING:       return "AIMING";
+        case BilliardState::BALLS_MOVING: return "BALLS_MOVING";
+        case BilliardState::BALL_IN_HAND: return "BALL_IN_HAND";
+        case BilliardState::GAME_OVER:    return "GAME_OVER";
+        default:                          return "UNKNOWN";
+        }
         });
-    rl["green"] = GREEN;
-    auto result = lua.script_file("assets/scripts/billiard_scene.lua");
-    if (result.valid())
-    {
+    game.set_function("set_state", [this](const std::string& s) {
+        if (s == "AIMING")       state = BilliardState::AIMING;
+        else if (s == "BALLS_MOVING") state = BilliardState::BALLS_MOVING;
+        else if (s == "BALL_IN_HAND") state = BilliardState::BALL_IN_HAND;
+        else if (s == "GAME_OVER")    state = BilliardState::GAME_OVER;
+        });
+
+    game.set_function("cue_ball_pos", [this]() -> std::tuple<float, float, bool> {
+        if (!cueBall) return { 0.f, 0.f, false };
+        return { cueBall->position.x, cueBall->position.y, true };
+        });
+    game.set_function("get_balls", [this]() {
+        sol::table t = lua.create_table();
+        for (int i = 0; i < (int)balls.size(); i++) {
+            sol::table b = lua.create_table();
+            b["x"] = balls[i]->position.x;
+            b["y"] = balls[i]->position.y;
+            b["color"] = balls[i]->color;
+            t[i + 1] = b;
+        }
+        return t;
+        });
+    game.set_function("get_pockets", [this]() {
+        sol::table t = lua.create_table();
+        for (int i = 0; i < (int)pockets.size(); i++) {
+            sol::table p = lua.create_table();
+            p["x"] = pockets[i].x;
+            p["y"] = pockets[i].y;
+            t[i + 1] = p;
+        }
+        return t;
+        });
+    game.set_function("ball_count", [this]() { return (int)balls.size(); });
+    game.set_function("all_stopped", [this]() { return allStopped(); });
+    game.set_function("check_pockets", [this]() -> std::tuple<int, bool> {
+        int  pocketed = 0;
+        bool cuePocketed = false;
+
+        for (auto it = balls.begin(); it != balls.end(); ) {
+            bool hit = false;
+            for (auto& p : pockets) {
+                if (Vector2Distance((*it)->position, p) < POCKET_R + BALL_R * 0.5f) {
+                    b2DestroyBody((*it)->getBodyId());
+                    it = balls.erase(it);
+                    pocketed++;
+                    hit = true;
+                    break;
+                }
+            }
+            if (!hit) ++it;
+        }
+        if (cueBall) {
+            for (auto& p : pockets) {
+                if (Vector2Distance(cueBall->position, p) < POCKET_R + BALL_R * 0.5f) {
+                    b2DestroyBody(cueBall->getBodyId());
+                    cueBall = nullptr;
+                    cuePocketed = true;
+                    break;
+                }
+            }
+        }
+        return { pocketed, cuePocketed };
+        });
+
+    // Physics actions
+    game.set_function("apply_shot", [this](float vx, float vy) {
+        if (cueBall)
+            b2Body_ApplyLinearImpulseToCenter(cueBall->getBodyId(), { vx,vy }, true);
+        });
+    game.set_function("place_cue_ball", [this](float x, float y) {
+        placeCueBall({ x, y });
+        });
+
+    auto result = lua.script_file("assets/scripts/game_scene.lua");
+    if (result.valid()) {
         luaUpdate = lua["update"];
         luaDraw = lua["draw"];
-        std::cout << "Script cargado y funciones vinculadas." << std::endl;
+        std::cout << "Script loaded OK\n";
     }
-    else
-    {
+    else {
         sol::error err = result;
-        std::cerr << "Error al cargar el script: " << err.what() << std::endl;
+        std::cerr << "Lua error: " << err.what() << "\n";
     }
 }
 
 void BilliardScene::UpdateScene()
 {
-    if (luaUpdate)
-    {
-		//std::cout << "Llamando a luaUpdate..." << std::endl;
-        luaUpdate();
-    }
-    float dt = GetFrameTime();
+    if (luaUpdate) luaUpdate();
 
+    float dt = GetFrameTime();
     physics.update(dt);
 
-    for (auto& w : walls)   w->syncFromBody();
-    for (auto& b : balls)   b->syncFromBody();
-    if (cueBall)             cueBall->syncFromBody();
-
-    if (state == BilliardState::BALLS_MOVING)
-    {
-        checkPockets();
-
-        if (balls.empty()) { state = BilliardState::GAME_OVER; return; }
-        if (!cueBall) { state = BilliardState::BALL_IN_HAND; return; }
-        if (allStopped()) { state = BilliardState::AIMING; }
-        return;
-    }
-
-    if (state == BilliardState::BALL_IN_HAND)
-    {
-        Vector2 mp = GetMousePosition();
-        bool inTable = mp.x > TABLE_X + BALL_R && mp.x < TABLE_X + TABLE_W - BALL_R &&
-            mp.y > TABLE_Y + BALL_R && mp.y < TABLE_Y + TABLE_H - BALL_R;
-
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && inTable)
-        {
-            placeCueBall(mp);
-            state = BilliardState::AIMING;
-        }
-        return;
-    }
-
-    if (state == BilliardState::AIMING && cueBall)
-    {
-        Vector2 mp = GetMousePosition();
-
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-        {
-            if (Vector2Distance(mp, cueBall->position) < BALL_R * 4.0f)
-            {
-                dragging = true;
-                dragPos = mp;
-            }
-        }
-
-        if (dragging && IsMouseButtonDown(MOUSE_BUTTON_LEFT))
-            dragPos = mp;
-
-        if (dragging && IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
-        {
-            Vector2 diff = Vector2Subtract(cueBall->position, dragPos);
-            float   dist = Vector2Length(diff);
-
-            if (dist > 5.0f)
-            {
-                float   power = fminf(dist / MAX_DRAG, 1.0f);
-                Vector2 dir = Vector2Normalize(diff);
-                b2Vec2  impulse = { dir.x * power * MAX_IMPULSE,
-                                    dir.y * power * MAX_IMPULSE };
-
-                b2Body_ApplyLinearImpulseToCenter(cueBall->getBodyId(), impulse, true);
-                state = BilliardState::BALLS_MOVING;
-            }
-            dragging = false;
-        }
-
-        if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
-            dragging = false;
-    }
+    for (auto& w : walls) w->syncFromBody();
+    for (auto& b : balls) b->syncFromBody();
+    if (cueBall)           cueBall->syncFromBody();
 }
 
 void BilliardScene::Draw()
 {
-    if (luaDraw)
-    {
-        luaDraw();
-    }
-
-    DrawRectangle((int)(TABLE_X - WALL_T - 6), (int)(TABLE_Y - WALL_T - 6),
-        (int)(TABLE_W + (WALL_T + 6) * 2), (int)(TABLE_H + (WALL_T + 6) * 2),
-        TABLE_BORDER);
-
-    DrawRectangle((int)TABLE_X, (int)TABLE_Y,
-        (int)TABLE_W, (int)TABLE_H, FELT_COLOR);
-
-    float lx = TABLE_X + TABLE_W * 0.25f;
-    DrawLine((int)lx, (int)TABLE_Y, (int)lx, (int)(TABLE_Y + TABLE_H),
-        Fade(WHITE, 0.15f));
-
-    DrawCircle((int)(TABLE_X + TABLE_W * 0.65f),
-        (int)(TABLE_Y + TABLE_H * 0.5f),
-        3, Fade(WHITE, 0.3f));
-
-    for (auto& p : pockets)
-        DrawCircleV(p, POCKET_R, BLACK);
-
-    for (auto& w : walls)
-        w->draw();
-
-    for (auto& b : balls)
-        b->draw();
-
-    if (cueBall)
-        cueBall->draw();
-
-    drawAimingUI();
-
-    drawHUD();
+    if (luaDraw) luaDraw();
 }
 
 void BilliardScene::drawAimingUI() const

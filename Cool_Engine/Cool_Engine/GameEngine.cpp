@@ -1,14 +1,8 @@
 #include "GameEngine.h"
 #include "raylib/raylib.h"
-#include "Log.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
-#include "box2d/base.h"
-#include "GameScene.h"
-#include "BilliardScene.h"
-
-//#define RAYGUI_IMPLEMENTATION
-//#include "include/raygui.h"
+#include "MenuScene.h"
 
 GameEngine::GameEngine()
 {
@@ -17,14 +11,16 @@ GameEngine::GameEngine()
 
 GameEngine::~GameEngine()
 {
+    delete eventManagerI;
 }
 
 void GameEngine::Init()
 {
     InitWindow(screenWidth, screenHeight, "Cool_Engine");
-	InitAudioDevice();
-    SceneManager::instance().changeScene(&BilliardScene::instance());
+    InitAudioDevice();
     SetTargetFPS(60);
+
+    SceneManager::instance().changeScene(&MenuScene::instance());
 }
 
 void GameEngine::Update()
@@ -35,24 +31,24 @@ void GameEngine::Update()
 void GameEngine::Draw()
 {
     BeginDrawing();
-    ClearBackground(RAYWHITE);
-
-	SceneManager::instance().draw();
-
+    ClearBackground({ 15, 15, 20, 255 });
+    SceneManager::instance().draw();
     EndDrawing();
 }
 
+
+bool GameEngine::shouldQuit = false;
 void GameEngine::Run()
 {
-    while (!WindowShouldClose())
+    while (!WindowShouldClose() && !GameEngine::shouldQuit)
     {
         Update();
         Draw();
     }
-    
 }
 
 void GameEngine::ShutDown()
 {
+    CloseAudioDevice();
     CloseWindow();
 }

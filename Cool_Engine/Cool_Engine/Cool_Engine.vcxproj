@@ -150,6 +150,7 @@
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="PhysicsSystem.cpp" />
+    <ClCompile Include="raygui_impl.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -158,7 +159,7 @@
     <Font Include="assets\fonts\American Captain.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="billiard_scene.lua" />
+    <None Include="assets\scripts\game_scene.lua" />
     <None Include="gameScene.json" />
   </ItemGroup>
   <ItemGroup>
