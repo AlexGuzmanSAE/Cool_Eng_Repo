@@ -158,8 +158,8 @@
     <Font Include="assets\fonts\American Captain.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="billiard_scene.lua" />
     <None Include="gameScene.json" />
-    <None Include="assets\scripts\game_scene.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BilliardScene.h" />

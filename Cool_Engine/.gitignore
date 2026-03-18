@@ -103,6 +103,8 @@ StyleCopReport.xml
 *.dll
 !raylib.dll
 
+
+
 # Chutzpah Test files
 _Chutzpah*
 

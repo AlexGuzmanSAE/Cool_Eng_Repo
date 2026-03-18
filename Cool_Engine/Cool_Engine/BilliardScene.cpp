@@ -192,7 +192,7 @@ void BilliardScene::bindRaylib()
             std::cout << "[LUA]: " << message << std::endl;
         });
     rl["green"] = GREEN;
-    auto result = lua.script_file("assets/scripts/game_scene.lua");
+    auto result = lua.script_file("assets/scripts/billiard_scene.lua");
     if (result.valid())
     {
         luaUpdate = lua["update"];

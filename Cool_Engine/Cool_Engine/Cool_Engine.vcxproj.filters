@@ -74,7 +74,7 @@
     <None Include="gameScene.json">
       <Filter>assets\json</Filter>
     </None>
-    <None Include="assets\scripts\game_scene.lua" />
+    <None Include="billiard_scene.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BilliardScene.h">
