@@ -2,74 +2,81 @@
 #include "SceneBase.h"
 #include "PhysicsSystem.h"
 #include "PBodies.h"
-#include <memory>
-#include <vector>
-#include <string>
+#include "ResourceManager.h"
+#include "SaveSistem.h"
 #include "sol/sol.hpp"
+#include "raylib/raylib.h"
+#include <vector>
+#include <memory>
+#include <optional>
 
-enum class BilliardState {
-    AIMING,
-    BALLS_MOVING,
-    BALL_IN_HAND,
-    GAME_OVER
-};
 
-class BilliardScene : public SceneBase {
+enum class BilliardState { AIMING, BALLS_MOVING, BALL_IN_HAND, GAME_OVER };
+
+static constexpr Color CUSHION_COLOR = { 22, 100, 28, 255 };
+static constexpr Color FELT_COLOR = { 34, 110, 55, 255 };
+static constexpr Color TABLE_BORDER = { 90,  48, 12, 255 };
+
+class BilliardScene : public SceneBase
+{
 public:
     static BilliardScene& instance();
 
-    void Load()        override;
-    void UnLoad()      override;
+    void Load() override;
+    void UnLoad() override;
     void UpdateScene() override;
-    void Draw()        override;
+    void Draw() override;
+    void PressButton() override {}
+    void update() override {}
+
+    void applyState(const BilliardSave& s);
 
 private:
     BilliardScene() = default;
 
-    void update() override {} 
-    void PressButton() override {}
+    float TABLE_X = 0.f;
+    float TABLE_Y = 0.f;
+    static constexpr float TABLE_W = 800.f;
+    static constexpr float TABLE_H = 400.f;
+    static constexpr float WALL_T = 20.f;
+    static constexpr float BALL_R = 12.f;
+    static constexpr float POCKET_R = 18.f;
+    static constexpr float MAX_DRAG = 150.f;
+    static constexpr float MAX_IMPULSE = 300 * 15000.f;
 
-    
-
-    static constexpr float TABLE_X = 100.0f;
-    static constexpr float TABLE_Y = 100.0f;
-    static constexpr float TABLE_W = 600.0f;
-    static constexpr float TABLE_H = 340.0f;
-    static constexpr float WALL_T = 20.0f;
-
-    static constexpr float BALL_R = 11.0f;
-    static constexpr float POCKET_R = 16.0f;
-
-    static constexpr float MAX_IMPULSE = 500.0f * 10000;
-    static constexpr float MAX_DRAG = 200.0f;
-
-    std::shared_ptr<PCircle>              cueBall;
     std::vector<std::shared_ptr<PCircle>> balls;
-    std::vector<std::shared_ptr<PBox>>    walls;
-    std::vector<Vector2>                  pockets;
-
+    std::vector<std::shared_ptr<PBox>> walls;
+    std::shared_ptr<PCircle> cueBall;
+    std::vector<Vector2> pockets;
+    
     BilliardState state = BilliardState::AIMING;
-    int           score = 0;
-    bool          dragging = false;
-    Vector2       dragPos = {};
+    int score = 0;
+    bool dragging = false;
+    Vector2 dragPos = {};
 
-    void  buildTable();
-    void  rackBalls();
-    void  placeCueBall(Vector2 pos);
-    bool  allStopped()   const;
-    void  checkPockets();
-    void  drawAimingUI() const;
-    void  drawHUD()      const;
+    bool paused = false;
+    Rectangle btnResume = {};
+    Rectangle btnSave = {};
+    Rectangle btnMenu = {};
 
-    static constexpr Color FELT_COLOR = { 22,  99,  40, 255 };
-    static constexpr Color CUSHION_COLOR = { 80,  50,  20, 255 };
-    static constexpr Color TABLE_BORDER = { 50,  30,  10, 255 };
+    std::shared_ptr<Sound> sfxShot;
+    std::shared_ptr<Sound> sfxPocket;
+    std::shared_ptr<Music> bgMusic;
 
-    //LUA
+    std::unique_ptr<sol::state> lua;
+    sol::safe_function luaUpdate;
+    sol::safe_function luaDraw;
+
+    void buildTable();
+    void rackBalls();
+    void placeCueBall(Vector2 pos);
+    bool allStopped() const;
+    void checkPockets();
     void bindRaylib();
+    void drawAimingUI() const;
+    void drawHUD()      const;
+    void drawPauseMenu();
+    BilliardSave captureState() const;
 
-    sol::state lua;
-    sol::function luaUpdate;
-    sol::function luaDraw;
-
+    std::optional<BilliardSave> pendingSave;
 };

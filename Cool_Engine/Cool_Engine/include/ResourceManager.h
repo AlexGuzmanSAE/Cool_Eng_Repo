@@ -1,9 +1,17 @@
 #pragma once
+
+//#ifdef _WIN32
+//#define WIN32_LEAN_AND_MEAN
+//#undef PlaySound
+//#undef PlaySoundA  
+//#undef PlaySoundW
+//#endif
+
 #include "raylib/raylib.h"
 #include <memory>
-#include <iostream>
 #include <string>
 #include <unordered_map>
+#include <iostream>
 
 class ResourceManager
 {

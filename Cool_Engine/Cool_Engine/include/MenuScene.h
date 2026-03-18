@@ -20,12 +20,17 @@ public:
 private:
     MenuScene() = default;
 
-    bool goToQuit = false;
-    float pulseTimer = 0.f;
-    bool  goToBilliard = false;
-
-    int sw = 0, sh = 0;
+    float     pulseTimer = 0.f;
+    bool      goToBilliard = false;
+    bool      goToQuit = false;
+    int       sw = 0, sh = 0;
+    bool      goContinue = false;
+    bool      hasSave = false;
     Rectangle btnPlay{};
     Rectangle btnSettings{};
     Rectangle btnQuit{};
+    Rectangle btnContinue{};
+
+    std::shared_ptr<Sound> sfxClick;
+    std::shared_ptr<Music> bgMusic;  
 };
