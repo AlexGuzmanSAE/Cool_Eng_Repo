@@ -63,28 +63,13 @@
     <ClCompile Include="src\GameEngine.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Log.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\MenuScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PhysicsSystem.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\raygui_impl.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\ResourceManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\SaveSistem.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneBase.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\SceneManager.cpp">

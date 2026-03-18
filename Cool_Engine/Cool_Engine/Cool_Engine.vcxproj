@@ -77,6 +77,9 @@
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <VcpkgTriplet>x64-windows-static</VcpkgTriplet>
   </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnabled>false</VcpkgEnabled>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -115,7 +118,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)lib;$(ProjectDir)lib\include</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib;$(ProjectDir)lib\include;$(ProjectDir)lib\raylib.lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>box2dd.lib;gdi32.lib;opengl32.lib;lua54.lib;raylib.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
@@ -156,14 +159,9 @@
     <ClCompile Include="src\Cool_Engine.cpp" />
     <ClCompile Include="src\force_link.cpp" />
     <ClCompile Include="src\GameEngine.cpp" />
-    <ClCompile Include="src\GameScene.cpp" />
-    <ClCompile Include="src\Log.cpp" />
     <ClCompile Include="src\MenuScene.cpp" />
-    <ClCompile Include="src\PhysicsSystem.cpp" />
     <ClCompile Include="src\raygui_impl.cpp" />
-    <ClCompile Include="src\ResourceManager.cpp" />
     <ClCompile Include="src\SaveSistem.cpp" />
-    <ClCompile Include="src\SceneBase.cpp" />
     <ClCompile Include="src\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
