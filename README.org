@@ -6,6 +6,8 @@
 ** Descripción
 Cool Engine es un proyecto pensado para el desarrollo sencillo y eficiente proporcionado por Raylib para juegos pequeños y multiplataforma. Con uso de C++ moderno y una arquitectura robusta alrededor de Lua como lenguaje de Scripting para gameplay.
 
+[[file:Resources/billar.png]]
+
 ** Características Principales
 - Simple, multiplataforma, versátil.
 - Utiliza C++ moderno en su justa medida donde es necesario para sumar a la arquitectura.
