@@ -1,0 +1,56 @@
+[
+{
+  "directory": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/build",
+  "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DSOL_ALL_SAFETIES_ON=1 -DSOL_LUA54=1 -DUSE_LIBTYPE_SHARED -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/include -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/lib/include -I/usr/include/luajit-2.1  -o CMakeFiles/Cool_EngineX.dir/src/AudioHelper.cpp.o -c /home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/AudioHelper.cpp",
+  "file": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/AudioHelper.cpp",
+  "output": "CMakeFiles/Cool_EngineX.dir/src/AudioHelper.cpp.o"
+},
+{
+  "directory": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/build",
+  "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DSOL_ALL_SAFETIES_ON=1 -DSOL_LUA54=1 -DUSE_LIBTYPE_SHARED -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/include -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/lib/include -I/usr/include/luajit-2.1  -o CMakeFiles/Cool_EngineX.dir/src/BilliardScene.cpp.o -c /home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/BilliardScene.cpp",
+  "file": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/BilliardScene.cpp",
+  "output": "CMakeFiles/Cool_EngineX.dir/src/BilliardScene.cpp.o"
+},
+{
+  "directory": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/build",
+  "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DSOL_ALL_SAFETIES_ON=1 -DSOL_LUA54=1 -DUSE_LIBTYPE_SHARED -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/include -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/lib/include -I/usr/include/luajit-2.1  -o CMakeFiles/Cool_EngineX.dir/src/Cool_Engine.cpp.o -c /home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/Cool_Engine.cpp",
+  "file": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/Cool_Engine.cpp",
+  "output": "CMakeFiles/Cool_EngineX.dir/src/Cool_Engine.cpp.o"
+},
+{
+  "directory": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/build",
+  "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DSOL_ALL_SAFETIES_ON=1 -DSOL_LUA54=1 -DUSE_LIBTYPE_SHARED -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/include -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/lib/include -I/usr/include/luajit-2.1  -o CMakeFiles/Cool_EngineX.dir/src/GameEngine.cpp.o -c /home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/GameEngine.cpp",
+  "file": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/GameEngine.cpp",
+  "output": "CMakeFiles/Cool_EngineX.dir/src/GameEngine.cpp.o"
+},
+{
+  "directory": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/build",
+  "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DSOL_ALL_SAFETIES_ON=1 -DSOL_LUA54=1 -DUSE_LIBTYPE_SHARED -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/include -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/lib/include -I/usr/include/luajit-2.1  -o CMakeFiles/Cool_EngineX.dir/src/MenuScene.cpp.o -c /home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/MenuScene.cpp",
+  "file": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/MenuScene.cpp",
+  "output": "CMakeFiles/Cool_EngineX.dir/src/MenuScene.cpp.o"
+},
+{
+  "directory": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/build",
+  "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DSOL_ALL_SAFETIES_ON=1 -DSOL_LUA54=1 -DUSE_LIBTYPE_SHARED -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/include -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/lib/include -I/usr/include/luajit-2.1  -o CMakeFiles/Cool_EngineX.dir/src/SaveSistem.cpp.o -c /home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/SaveSistem.cpp",
+  "file": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/SaveSistem.cpp",
+  "output": "CMakeFiles/Cool_EngineX.dir/src/SaveSistem.cpp.o"
+},
+{
+  "directory": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/build",
+  "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DSOL_ALL_SAFETIES_ON=1 -DSOL_LUA54=1 -DUSE_LIBTYPE_SHARED -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/include -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/lib/include -I/usr/include/luajit-2.1  -o CMakeFiles/Cool_EngineX.dir/src/SceneManager.cpp.o -c /home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/SceneManager.cpp",
+  "file": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/SceneManager.cpp",
+  "output": "CMakeFiles/Cool_EngineX.dir/src/SceneManager.cpp.o"
+},
+{
+  "directory": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/build",
+  "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DSOL_ALL_SAFETIES_ON=1 -DSOL_LUA54=1 -DUSE_LIBTYPE_SHARED -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/include -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/lib/include -I/usr/include/luajit-2.1  -o CMakeFiles/Cool_EngineX.dir/src/force_link.cpp.o -c /home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/force_link.cpp",
+  "file": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/force_link.cpp",
+  "output": "CMakeFiles/Cool_EngineX.dir/src/force_link.cpp.o"
+},
+{
+  "directory": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/build",
+  "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DSOL_ALL_SAFETIES_ON=1 -DSOL_LUA54=1 -DUSE_LIBTYPE_SHARED -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/include -I/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/lib/include -I/usr/include/luajit-2.1  -o CMakeFiles/Cool_EngineX.dir/src/raygui_impl.cpp.o -c /home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/raygui_impl.cpp",
+  "file": "/home/bv/Projects/CoolEngine/Cool_Eng_Repo/Cool_Engine/Cool_Engine/src/raygui_impl.cpp",
+  "output": "CMakeFiles/Cool_EngineX.dir/src/raygui_impl.cpp.o"
+}
+]

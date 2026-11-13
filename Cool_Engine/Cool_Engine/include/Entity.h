@@ -1,34 +1,27 @@
 #pragma once
+#include <raylib.h>
 #include <string>
-#include "raylib/raylib.h"
 
-class Entity
-{
+class Entity {
 public:
-	std::string tag;
-	std::string name;
-	Vector2 position;
-	bool active;
-	float angle;
+  std::string tag;
+  std::string name;
+  Vector2 position;
+  bool active;
+  float angle;
 
-	Entity(std::string name, std::string tag)
-		: name(name)
-		, tag(tag)
-		, position({ 0.0f, 0.0f })
-		, active(false)
-		, angle(0.0f)
-	{
-	}
+  Entity(std::string name, std::string tag)
+      : name(name), tag(tag), position({0.0f, 0.0f}), active(false),
+        angle(0.0f) {}
 
-	virtual ~Entity() = default;
-	
+  virtual ~Entity() = default;
 
-	virtual void update() = 0;
-	virtual void draw() = 0;
+  virtual void update() = 0;
+  virtual void draw() = 0;
 
-	bool isActive() const { return active; }
-	void destroy() { active = false; }
+  bool isActive() const { return active; }
+  void destroy() { active = false; }
 
-	std::string getName() const { return name; }
-	std::string getTag() const { return tag; }
+  std::string getName() const { return name; }
+  std::string getTag() const { return tag; }
 };
