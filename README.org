@@ -3,76 +3,71 @@
 #+DESCRIPTION: Un motor sencillo en C++, Raylib, Box2D y Lua scripting
 #+LANGUAGE: es
 
-* Descripción
-Cool Engine es un proyecto pensado para el desarrollo sencillo y eficiente proporcionado por Raylib para juegos pequeños y multiplataforma. Con uso de C++ moderno y una arquitectura robusta alrededor de Lua como lenguage de Scripting para gameplay.
+** Descripción
+Cool Engine es un proyecto pensado para el desarrollo sencillo y eficiente proporcionado por Raylib para juegos pequeños y multiplataforma. Con uso de C++ moderno y una arquitectura robusta alrededor de Lua como lenguaje de Scripting para gameplay.
 
-* Características Principales
-- Característica 1 :: Simple, multiplataforma, versátil.
-- Característica 2 :: Utiliza C++ moderno en su justa medida donde es necesario para sumar a la arquitectura.
-- Escalabilidad :: Al usar Lua como lenguaje de scripting, el motor tiene una clara diferenciación entre, C++, rápido y versátil, y Lua, simple, embebido y fácil de desarrollar en el.
+** Características Principales
+- Simple, multiplataforma, versátil.
+- Utiliza C++ moderno en su justa medida donde es necesario para sumar a la arquitectura.
+- Usa Lua como lenguaje de scripting; el motor tiene una clara diferenciación entre C++ (rápido y versátil para el núcleo) y Lua (simple, embebido y fácil de desarrollar para el gameplay).
 
-* Tecnologías Utilizadas
-- *Lenguaje:* =C++ / Lua=
-- *Framework:* =Raylib, Box2D=
-- *Herramientas:* CMake
+** Tecnologías Utilizadas
+- *Lenguajes:* =C++= / =Lua=
+- *Frameworks:* =Raylib=, =Box2D=
+- *Herramientas:* =CMake=
 
-* Empezando (Getting Started)
+** Empezando (Getting Started)
 Instrucciones paso a paso para que cualquier desarrollador pueda configurar el proyecto localmente sin problemas.
 
-** Requisitos Previos
-Enumera el software y las versiones necesarias para ejecutar el proyecto.
+*** Requisitos Previos
 - [[https://git-scm.com/][Git]]
-- Docker y Docker Compose
-- Node.js >= 18.0 (o el entorno pertinente)
+- Compilador de C++ (GCC, Clang o MSVC)
+- [[https://cmake.org/][CMake]] (versión 3.10 o superior)
 
-** Instalación
+*** Instalación
 1. Clona el repositorio:
    #+BEGIN_SRC sh
-   git clone https://github.com/tu-usuario/nombre-del-proyecto.git
-   cd nombre-del-proyecto
+   git clone https://github.com/AlexGuzmanSAE/Cool_Eng_Repo
+   cd Cool_Eng_Repo/Cool_Engine
    #+END_SRC
 
-2. Configura las variables de entorno:
+2. Genera los archivos con CMake
    #+BEGIN_SRC sh
-   cp .env.example .env
+   mkdir build
+   cd build
+   cmake ..
    #+END_SRC
 
-3. Instala las dependencias y levanta el entorno:
+3. Compila el motor:
    #+BEGIN_SRC sh
-   docker-compose up -d
+   cmake --build .
    #+END_SRC
 
-* Uso
-Proporciona ejemplos claros de cómo utilizar la aplicación o la API.
+** Uso
+Para ejecutar el motor (Linux) una vez compilado, desde la carpeta =build= ejecuta:
 
-Para ejecutar las pruebas:
 #+BEGIN_SRC sh
-make test
+./Cool_EngineX
 #+END_SRC
 
-Ejemplo de llamada a la API principal:
-#+BEGIN_SRC javascript
-const response = await fetch('/api/v1/recurso');
-const data = await response.json();
-console.log(data);
+Ejemplo de cómo el motor expone la lógica a Lua (ejemplo de script de gameplay):
+#+BEGIN_SRC lua
+function Update(deltaTime)
+    -- Lógica de movimiento procesada en Lua, renderizada en C++
+    if Input.IsKeyDown(KEY_RIGHT) then
+        player.x = player.x + (150 * deltaTime)
+    end
+end
 #+END_SRC
 
-* Arquitectura
-Opcional, pero muy recomendado para proyectos complejos. Puedes explicar brevemente el patrón de diseño (ej. Clean Architecture, MVC, Microservicios) para que los reclutadores o contribuidores entiendan tus decisiones técnicas.
+** Arquitectura
+El motor sigue una arquitectura basada en la separación de responsabilidades (*Core-Scripting*):
+- **Núcleo (C++):** Se encarga de las tareas pesadas como el bucle principal, renderizado (Raylib), físicas (Box2D), gestión de memoria de bajo nivel y audio.
+- **Gameplay (Lua):** Actúa como la capa superior. Permite a los diseñadores de niveles o programadores de gameplay iterar rápidamente sobre las reglas del juego, crear entidades e IA sin necesidad de recompilar el código fuente en C++.
 
-* Contribución
-Las contribuciones son bienvenidas. Sigue estos pasos para proponer cambios:
-1. Haz un /Fork/ del proyecto.
-2. Crea tu rama de características (=git checkout -b feature/NuevaCaracteristica=).
-3. Haz un /Commit/ de tus cambios (=git commit -m 'feat: añade nueva característica'=).
-4. Sube la rama (=git push origin feature/NuevaCaracteristica=).
-5. Abre un /Pull Request/.
-
-* Licencia
+** Licencia
 Distribuido bajo la Licencia MIT. Consulta el archivo =LICENSE= para más detalles.
 
-* Contacto
-- *Tu Nombre* - [[mailto:tu-correo@email.com][tu-correo@email.com]]
-- *LinkedIn* - [[https://linkedin.com/in/tu-perfil][Tu Perfil Profesional]]
-- *GitHub* - [[https://github.com/tu-usuario][@tu-usuario]]
-- *Link del Proyecto* - [[https://github.com/tu-usuario/nombre-del-proyecto][Repositorio]]
+** Contacto
+- *LinkedIn* - [[https://www.linkedin.com/in/alejandro-emiliano-guzm%C3%A1n-tejada-08b700267/][Linkedin Profile]]
+- *Web Page* - [[https://alexguzmansae.github.io/portfolio/][PaginaWeb]]
