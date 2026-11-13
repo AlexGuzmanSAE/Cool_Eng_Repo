@@ -62,8 +62,8 @@ end
 
 ** Arquitectura
 El motor sigue una arquitectura basada en la separación de responsabilidades (*Core-Scripting*):
-- **Núcleo (C++):** Se encarga de las tareas pesadas como el bucle principal, renderizado (Raylib), físicas (Box2D), gestión de memoria de bajo nivel y audio.
-- **Gameplay (Lua):** Actúa como la capa superior. Permite a los diseñadores de niveles o programadores de gameplay iterar rápidamente sobre las reglas del juego, crear entidades e IA sin necesidad de recompilar el código fuente en C++.
+- *Núcleo (C++):* Se encarga de las tareas pesadas como el bucle principal, renderizado (Raylib), físicas (Box2D), gestión de memoria de bajo nivel y audio.
+- *Gameplay (Lua):* Actúa como la capa superior. Permite a los diseñadores de niveles o programadores de gameplay iterar rápidamente sobre las reglas del juego, crear entidades e IA sin necesidad de recompilar el código fuente en C++.
 
 ** Licencia
 Distribuido bajo la Licencia MIT. Consulta el archivo =LICENSE= para más detalles.
